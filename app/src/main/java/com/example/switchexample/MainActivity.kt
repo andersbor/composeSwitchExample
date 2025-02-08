@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -37,18 +39,22 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// More samples https://developer.android.com/develop/ui/compose/components/switch
 @Composable
 fun SwitchSample(modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
-        var checked by remember { mutableStateOf(true) }
+    Column(modifier = modifier
+        .fillMaxWidth()
+        .padding(16.dp)) {
+        var isContentVisible by remember { mutableStateOf(true) }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            //horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(text = "Show it")
-            Switch(checked = checked, onCheckedChange = { checked = it })
+            Spacer(modifier = Modifier.width(8.dp))
+            Switch(checked = isContentVisible, onCheckedChange = { isContentVisible = it })
         }
-        if (checked) { // conditional rendering
+        if (isContentVisible) { // conditional rendering
             Text(text = "Blah blah blah")
         }
         Text(text = "Some other component")
