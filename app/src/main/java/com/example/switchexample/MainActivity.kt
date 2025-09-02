@@ -45,14 +45,14 @@ fun SwitchSample(modifier: Modifier = Modifier) {
     Column(modifier = modifier
         .fillMaxWidth()
         .padding(16.dp)) {
-        var isContentVisible by remember { mutableStateOf(true) }
+        var isContentVisible: Boolean by remember { mutableStateOf(true) }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             //horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(text = "Show it")
             Spacer(modifier = Modifier.width(8.dp))
-            Switch(checked = isContentVisible, onCheckedChange = { isContentVisible = it })
+            Switch(checked = isContentVisible, onCheckedChange = { s-> isContentVisible = s })
         }
         if (isContentVisible) { // conditional rendering
             Text(text = "Blah blah blah")
